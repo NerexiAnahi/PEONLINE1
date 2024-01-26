@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades</title>
+    <link rel="stylesheet" href="{% static 'actividades.css' %}">
+</head>
+
+<body>
+    <h1>Actividades</h1>
+
+    <!-- Sección para mostrar actividades asignadas (Solo para el docente) -->
+    <section class="actividades-asignadas" id="actividadesAsignadas">
+        <h2>Actividades Asignadas</h2>
+        <ul>
+            <!-- Actividades simuladas asignadas -->
+            <li>Actividad 1 - Matemáticas</li>
+            <li>Actividad 2 - Inglés</li>
+            <li>Actividad 3 - ECA</li>
+            <!-- ... -->
+        </ul>
+    </section>
+
+    <!-- Sección para que el estudiante realice las actividades -->
+    <section class="realizar-actividad" id="realizarActividad">
+        <h2>Realizar Actividad</h2>
+        <form action="{% url 'actividades' %}" method="post">
+            {% csrf_token %}
+            <label for="actividades">Selecciona una actividad:</label>
+            <select name="actividades" required>
+                <!-- Lista de actividades (puedes cargarla desde tu base de datos) -->
+                <option value="matematicas">Matemáticas</option>
+                <option value="ingles">Inglés</option>
+                <option value="eca">ECA</option>
+                <option value="lengua_literatura">Lengua y Literatura</option>
+                <option value="estudios_sociales">Estudios Sociales</option>
+                <option value="ciencias_naturales">Ciencias Naturales</option>
+                <!-- ... -->
+            </select>
+
+            <label for="respuesta">Respuesta:</label>
+            <textarea name="respuesta" rows="4" required></textarea>
+
+            <input type="submit" value="Enviar Respuesta">
+        </form>
+    </section>
+
+    <!-- Mensaje para cuando no hay actividades asignadas -->
+    <p class="no-actividades" id="noActividadesAsignadas">No hay actividades asignadas en este momento.</p>
+
+    <!-- Mensaje para cuando no hay actividades para realizar -->
+    <p class="no-actividades" id="noActividadesRealizar">No hay actividades disponibles para realizar en este momento.</p>
+
+    <script>
+        // JavaScript para mostrar u ocultar secciones según el rol del usuario (docente o estudiante)
+        const Docentes = true; // Cambia esto según el rol del usuario
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const actividadesAsignadas = document.getElementById("actividadesAsignadas");
+            const realizarActividad = document.getElementById("realizarActividad");
+            const noActividadesAsignadas = document.getElementById("noActividadesAsignadas");
+            const noActividadesRealizar = document.getElementById("noActividadesRealizar");
+
+            if (Docentes) {
+                // Mostrar sección de actividades asignadas solo para docentes
+                actividadesAsignadas.style.display = "block";
+                realizarActividad.style.display = "none";
+            } else {
+                // Mostrar sección para realizar actividades solo para estudiantes
+                actividadesAsignadas.style.display = "none";
+                realizarActividad.style.display = "block";
+            }
+
+            // Mostrar mensajes de "No hay actividades" según el contenido simulado
+            const actividadesAsignadasLista = actividadesAsignadas.querySelector("ul");
+            if (actividadesAsignadasLista && actividadesAsignadasLista.children.length > 0) {
+                // Mostrar mensaje de "No hay actividades asignadas" para docentes
+                noActividadesAsignadas.style.display = "none";
+                noActividadesRealizar.style.display = "none";
+            } else {
+                // Mostrar mensaje de "No hay actividades para realizar" para estudiantes
+                noActividadesAsignadas.style.display = "block";
+                noActividadesRealizar.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>

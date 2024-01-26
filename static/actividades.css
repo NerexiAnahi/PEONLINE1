@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: #3498db;
+}
+
+/* Estilos para el recuadro de actividades asignadas */
+.actividades-asignadas {
+    border: 2px solid #3498db;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el recuadro de realizar actividad */
+.realizar-actividad {
+    border: 2px solid #3498db;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los mensajes de "No hay actividades" */
+.no-actividades {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+/* Estilos para la tabla de actividades asignadas */
+.actividades-asignadas table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.actividades-asignadas th, .actividades-asignadas td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.actividades-asignadas th {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Estilos para el formulario de realizar actividad */
+.realizar-actividad form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.realizar-actividad label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.realizar-actividad select, .realizar-actividad textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.realizar-actividad input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
